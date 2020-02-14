@@ -11,7 +11,7 @@ import java.util.List;
 public class Cars {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "car_gen")
     private int carId;
 
 

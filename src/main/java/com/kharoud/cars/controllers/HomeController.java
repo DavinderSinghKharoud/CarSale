@@ -7,19 +7,19 @@ import com.kharoud.cars.repository.CarsRepository;
 import com.kharoud.cars.repository.CartRepository;
 import com.kharoud.cars.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
 public class HomeController {
 
-    @Autowired
-    private Cart cart;
 
-    @Autowired
+    private Cart cart;
     private Customer customer;
 
     private CarsRepository carsRepository;
@@ -32,11 +32,17 @@ public class HomeController {
         this.cartRepository = cartRepository;
     }
 
+    @PostMapping("/login")
+    public void login(@PathParam("uname") String user, @PathParam("pass") String pass){
+
+    }
     @RequestMapping("/update")
     public List<Cart> home(){
 
-        customer.setEmail("Dskharoud2@gmail.com");
-        customer.setName("Sunny");
+        customer = new Customer();
+        customer.setEmail("Dskharoud3@gmail.com");
+        customer.setName("Kharoud");
+        customerRepository.save( customer );
 
         Cars cars = new Cars();
         cars.setName("Mustang");
@@ -52,6 +58,10 @@ public class HomeController {
         cars1.setEngine("High power");
         cars1.setPrice(1000);
 
+        carsRepository.save( cars );
+        carsRepository.save( cars1 );
+
+        cart = new Cart();
         cart.setCustomer(customer);
         cart.getCarsList().add( cars );
         cart.getCarsList().add( cars1 );
@@ -65,6 +75,17 @@ public class HomeController {
     public List<Cart> getCart(){
 
         return cartRepository.findAll();
+    }
+
+    @RequestMapping("/cust")
+    public List<Customer> getCust(){
+
+
+        customer.setName("asdf");
+        customer.setEmail("asdf");
+        customerRepository.save( customer);
+
+        return customerRepository.findAll();
     }
 
 
