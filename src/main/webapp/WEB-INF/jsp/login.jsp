@@ -7,7 +7,7 @@
 <body>
 
 <h1>Login Form</h1>
-<form action="login" method="get">
+<form action="login" method="post">
     Enter username: <input type="text" name="uname"><br>
     Enter password: <input type="password" name="pass"><br>
 </form>
