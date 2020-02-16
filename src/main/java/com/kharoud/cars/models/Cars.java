@@ -32,40 +32,45 @@ public class Cars {
         return carId;
     }
 
-    public void setCarId(int carId) {
+    public Cars setCarId(int carId) {
         this.carId = carId;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Cars setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public Cars setColor(String color) {
         this.color = color;
+        return this;
     }
 
     public String getEngine() {
         return engine;
     }
 
-    public void setEngine(String engine) {
+    public Cars setEngine(String engine) {
         this.engine = engine;
+        return this;
     }
 
     public int getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public Cars setPrice(int price) {
         this.price = price;
+        return this;
     }
 
     @Override
