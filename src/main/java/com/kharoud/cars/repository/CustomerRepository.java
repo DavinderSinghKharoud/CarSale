@@ -11,4 +11,5 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
        Customer findByUsernameEqualsAndPasswordEquals(String username, String password);
 
+
 }
