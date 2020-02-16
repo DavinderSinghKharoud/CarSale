@@ -20,7 +20,7 @@ public class Customer {
     private String password;
     private String name;
     private String email;
-    private long phonenumber;
+    private String phonenumber;
 
     @Override
     public String toString() {
@@ -77,11 +77,11 @@ public class Customer {
         this.email = email;
     }
 
-    public long getPhonenumber() {
+    public String getPhonenumber() {
         return phonenumber;
     }
 
-    public void setPhonenumber(long phonenumber) {
+    public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
 

@@ -38,13 +38,13 @@ public class HomeController {
             return "login";
         }
     }
-    @GetMapping("/create")
-    public void logi1n() {
 
-        Customer customer = new Customer();
-        customer.setUsername("sunny");
-        customer.setPassword("1");
+    @PostMapping(value = "/create", consumes = "application/json")
+    @ResponseBody
+    public Customer create( Customer customer ) {
+
         customerRepository.save( customer );
+        return customer;
     }
 
     @RequestMapping("/update")
