@@ -59,11 +59,10 @@ public class HomeController {
 
     @GetMapping(value = "/delete/{id}", produces = "application/json")
     @ResponseBody
-    public Customer deleteCust(Model model, @PathVariable("id") String id) {
+    public String deleteCust(Model model, @PathVariable("id") String id) {
 
-        Customer cust = customerRepository.findById(Integer.valueOf(id)).orElse(null);
         customerRepository.deleteById(Integer.valueOf(id));
-        return cust;
+        return "Deleted";
     }
 
     @GetMapping(value = "/cars", produces = "application/json")
@@ -84,7 +83,13 @@ public class HomeController {
         return car;
     }
 
+    @DeleteMapping(value = "/cars/{id}", produces = "application/json")
+    @ResponseBody
+    public String deleteCar(Model model, @PathVariable("id") String id) {
 
+        carsRepository.deleteById( Integer.valueOf( id ));
+        return "Car deleted";
+    }
 //
 //    @RequestMapping("/update")
 //    public List<Cart> home() {
