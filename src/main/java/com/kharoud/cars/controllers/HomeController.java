@@ -75,6 +75,15 @@ public class HomeController {
         return lst;
     }
 
+    @GetMapping(value = "/cars/{id}", produces = "application/json")
+    @ResponseBody
+    public Cars editCar(Model model, @PathVariable("id") String id) {
+
+        Cars car = carsRepository.findById( Integer.valueOf( id )).orElse(null);
+        model.addAttribute("cars", car);
+        return car;
+    }
+
 
 //
 //    @RequestMapping("/update")
