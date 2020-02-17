@@ -22,6 +22,15 @@ public class Cart {
     @OneToMany( cascade = CascadeType.ALL)
     private List<Cars> carsList = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "cartId=" + cartId +
+                ", customer=" + customer +
+                ", carsList=" + carsList +
+                '}';
+    }
+
     public Cart() {
     }
 
