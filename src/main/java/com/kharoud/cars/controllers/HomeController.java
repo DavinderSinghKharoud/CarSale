@@ -82,6 +82,15 @@ public class HomeController {
         return "Deleted";
     }
 
+    @GetMapping(value = "/customers", produces = "application/json")
+    @ResponseBody
+    public List<Customer> listCustomer(Model model) {
+
+        List<Customer> lst = customerRepository.findAll();
+        model.addAttribute("customers", lst);
+        return lst;
+    }
+
     @GetMapping(value = "/cars", produces = "application/json")
     @ResponseBody
     public List<Cars> listCars(Model model) {
