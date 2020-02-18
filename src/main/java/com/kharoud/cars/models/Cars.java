@@ -23,6 +23,17 @@ public class Cars {
     private String engine;
     private int price;
 
+    @Override
+    public String toString() {
+        return "Cars{" +
+                "carId=" + carId +
+                ", orders=" + orders +
+                ", name='" + name + '\'' +
+                ", color='" + color + '\'' +
+                ", engine='" + engine + '\'' +
+                ", price=" + price +
+                '}';
+    }
 
     public Cars() {
     }
@@ -71,17 +82,6 @@ public class Cars {
     public Cars setPrice(int price) {
         this.price = price;
         return this;
-    }
-
-    @Override
-    public String toString() {
-        return "Cars{" +
-                "carId=" + carId +
-                ", name='" + name + '\'' +
-                ", color='" + color + '\'' +
-                ", engine='" + engine + '\'' +
-                ", price=" + price +
-                '}';
     }
 
     public List<Orders> getOrders() {

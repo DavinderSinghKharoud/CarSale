@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class HomeController {
@@ -125,6 +126,55 @@ public class HomeController {
         carsRepository.save( cars );
         return "Car Added";
     }
+
+    /**
+     * {
+     *         "cusid": "26",
+     *         "carid":"453"
+     *     }
+     *
+     *     Only add all distinct cars in to one Customer id
+     */
+    @PostMapping(value = "/cart",consumes = "application/json", produces = "application/json")
+    public String addCart(@RequestBody Map<String, String> data) {
+
+        System.out.println( data.get( "cusid"));
+        System.out.println( data.get( "carid" ));
+        Customer cus = customerRepository.findById( Integer.valueOf( data.get( "cusid") ) ).orElse( null );
+
+        if( cus == null){
+            return "Customer not exist";
+        }
+
+        Cart cart = cartRepository.findByCustomer( cus );
+
+        if( cart == null ){
+
+            System.out.println("Cart not found");
+            Cart newCart = new Cart();
+            newCart.setCustomer( cus );
+
+            Cars car = carsRepository.findById( Integer.valueOf( data.get( "carid") ) ).orElse(null);
+
+            System.out.println( car );
+
+            if( car == null ){
+                return "car don't exist";
+            }
+
+            newCart.getCarsList().add( car );
+            cartRepository.save( newCart );
+
+        }else{
+            System.out.println( " cart found");
+            Cars car = carsRepository.findById( Integer.valueOf( data.get( "carid") ) ).orElse(null);
+
+            cart.getCarsList().add( car );
+            cartRepository.save( cart);
+        }
+        return "Car Added";
+    }
+
 
 
     @RequestMapping("/update")
