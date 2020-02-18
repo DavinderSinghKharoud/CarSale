@@ -62,6 +62,7 @@ public class HomeController {
         return cust;
     }
 
+    //There is a problem in deleting, Cars
     @GetMapping(value = "/delete/{id}", produces = "application/json")
     @ResponseBody
     @Transactional
@@ -109,23 +110,20 @@ public class HomeController {
         return car;
     }
 
-    @DeleteMapping(value = "/cars/{id}", produces = "application/json")
-    @ResponseBody
-    public String deleteCar(Model model, @PathVariable("id") String id) {
-
-        carsRepository.deleteById( Integer.valueOf( id ));
-        return "Car deleted";
-    }
+//    @DeleteMapping(value = "/cars/{id}", produces = "application/json")
+//    @ResponseBody
+//    public String deleteCar(Model model, @PathVariable("id") String id) {
+//
+//        carsRepository.deleteById( Integer.valueOf( id ));
+//        return "Car deleted";
+//    }
 
     //Send data maybe through json
-    @PostMapping(value = "/cars/{id}", consumes = "application/json", produces = "application/json")
-    @ResponseBody
-    public String addCar(Model model, @PathVariable("id") String id) {
+    @PostMapping(value = "/addCar", consumes = "application/json", produces = "application/json")
+    public String addCar(@RequestBody Cars cars) {
 
-        Cars car = carsRepository.findById( Integer.valueOf( id )).orElse( null );
-
-
-        return "Car deleted";
+        carsRepository.save( cars );
+        return "Car Added";
     }
 
 

@@ -19,17 +19,8 @@ public class Cart {
     @JoinColumn( name = "custId")
     private Customer customer;
 
-    @OneToMany( cascade = CascadeType.ALL)
+    @OneToMany
     private List<Cars> carsList = new ArrayList<>();
-
-    @Override
-    public String toString() {
-        return "Cart{" +
-                "cartId=" + cartId +
-                ", customer=" + customer +
-                ", carsList=" + carsList +
-                '}';
-    }
 
     public Cart() {
     }
