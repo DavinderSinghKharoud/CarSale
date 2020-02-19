@@ -175,6 +175,30 @@ public class HomeController {
         return "Car Added";
     }
 
+    @PostMapping(value = "/editcart",consumes = "application/json", produces = "application/json")
+    public String editCart(@RequestBody Map<String, String> data) {
+
+        System.out.println( data.get( "cusid"));
+        System.out.println( data.get( "carid" ));
+        Customer cus = customerRepository.findById( Integer.valueOf( data.get( "cusid") ) ).orElse( null );
+
+        if( cus == null){
+            return "Customer not exist";
+        }
+
+        Cart cart = cartRepository.findByCustomer( cus );
+
+        if( cart != null ){
+
+            System.out.println( " cart found");
+            Cars car = carsRepository.findById( Integer.valueOf( data.get( "carid") ) ).orElse(null);
+
+            cart.getCarsList().remove( car );
+            cartRepository.save( cart);
+
+        }
+        return "Car Removed";
+    }
 
 
     @RequestMapping("/update")
